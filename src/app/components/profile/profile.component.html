@@ -1,0 +1,41 @@
+<form action="" class="search-form">
+  <div class="form-group">
+    <input type="text" placeholder="Search" [(ngModel)]="username" name="username" (keyup)="findProfile()">
+  </div>
+</form>
+
+<div *ngIf="profile">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      {{profile.name}}<small>({{profile.login}})</small>
+      <span *ngIf="profile.company">
+      WorkPlace:{{profile.company}}</span>
+    </div>
+    <div class="panel-body">
+      <div class="col-sm-5">
+        <li *ngIf="avatar_url"></li>
+        <li  *ngIf="public_repos">{{public_repos}}</li>
+        <li *ngIf="profile.bio">{{profile.bio}}</li>
+      </div>
+      <div class="col-sm-4">
+        <div>
+          <p >
+            <span class="label label-default">{{profile.public_repos}} Public Repos</span>
+          </p>
+          <p><a href="{{profile.html_url}}">View on Github</a></p>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Repos</h3>
+            </div>
+            <div class="panel-body" *ngFor="let repo of repos">
+              <span>
+              {{repo.name}} <a href="{{repo.html_url}}" class="btn btn-sn">View This On git</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
